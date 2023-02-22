@@ -20,7 +20,7 @@ resource "digitalocean_kubernetes_cluster" "kubernetes" {
 
 resource "local_sensitive_file" "kubernetes_config" {
   content  = "${digitalocean_kubernetes_cluster.kubernetes.kube_config.0.raw_config}"
-  filename = "${path.module}/kubeconfig.yaml"
+  filename = "${path.module}/files/kubeconfig.yaml"
 } 
 
 output "z_connect_to_k8s" {
@@ -29,7 +29,7 @@ output "z_connect_to_k8s" {
     # How to connect to the Kubernetes service:
 
       # Connect to the Kubernetes service with:
-          export KUBECONFIG=kubeconfig.yaml
+          export KUBECONFIG=files/kubeconfig.yaml
           kubectl cluster-info
           kubectl get all
 

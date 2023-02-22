@@ -26,8 +26,9 @@ Instructions to deploy an application workload to the DOKS cluster are also incl
 
 ## Connecting to DOKS with kubectl
 
-1. Get the KUBECONFIG of the DOKS cluster.
-2. Set the KUBECONFIG as the config for `kubectl`.
+1. Terraform will automatically create a copy of the KUBECONFIG and place it in ./files/kubeconfig.yaml
+2. Run `export KUBECONFIG=files/kubeconfig.yaml` to configure `kubectl` and have it connect the DOKS cluster.
+3. Run `kubectl cluster-info` to confirm the configuration has be set properly.
 
 ## Pick a workload from the DO marketplace
 
@@ -37,10 +38,10 @@ All kubernetes apps in the DO Marketplace are directly linked to their official 
 ## Deploy workload (Prometheus stack)
 
 1. Setup a namespace for the app deployment: 
-   1. Run `kubectl apply -f monitoring.yaml`.
+   1. Run `kubectl apply -f files/monitoring.yaml`.
 2. Create an overwrite file to overwrite default settings in the Prometheus Helm chart. Open the overwrite file and set the Grafana admin password. See this [Digital Ocean documentation page](https://www.digitalocean.com/community/tutorials/how-to-set-up-digitalocean-kubernetes-cluster-monitoring-with-helm-and-prometheus-operator) for more info.
 3. deploy helm chart: 
-   1. run `helm install --namespace monitoring my-kube-prometheus-stack -f override_prometheus-operator.yaml prometheus-community/kube-prometheus-stack --version 45.2.0`.
+   1. run `helm install --namespace monitoring my-kube-prometheus-stack -f files/override_prometheus-operator.yaml prometheus-community/kube-prometheus-stack --version 45.2.0`.
 
 ## Connecting to the dashboards
 
@@ -59,8 +60,8 @@ All kubernetes apps in the DO Marketplace are directly linked to their official 
 In order to get a full overview of what was deployed:
 
 1. Run `kubectl get statefulsets --namespace monitoring` to get an overview of the deployed statefulsets.
-2. Run `kubectl describe statefulset --namespace monitoring name-of-statefulset > name-of-statefulset.yaml`.
-3. Open `name-of-statefulset.yaml` in any texteditor.
+2. Run `kubectl describe statefulset --namespace monitoring name-of-statefulset > files/name-of-statefulset.yaml`.
+3. Open `files/name-of-statefulset.yaml` in any texteditor.
 
 ## Delete the deployment
 
