@@ -78,6 +78,7 @@ In order to get a full overview of what was deployed:
 ## Roadmap
 
 1. Monitor external endpoint/app/service in DO Prometheus running in DOKS. i.e. Monitor an application in AWS with a Grafana dashboard in DOKS.
+2. Decide if the application deployment should be split up into it's own repository. Logically yes but it is also useful to have a realistic example in this repo.
 
 ## Sources
 
