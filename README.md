@@ -77,7 +77,7 @@ In order to get a full overview of what was deployed:
 
 ## Roadmap
 
-1. Monitor Vault deployment in AWS from prometheus in DOKS.
+1. Monitor external endpoint/app/service in DO Prometheus running in DOKS. i.e. Monitor an application in AWS with a Grafana dashboard in DOKS.
 
 ## Sources
 
